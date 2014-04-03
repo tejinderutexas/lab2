@@ -21,7 +21,6 @@ void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
     pcl::PointCloud < pcl::PointXYZ > pcl_cloud;
     pcl::fromPCLPointCloud2(pcl_pc2, pcl_cloud);
    
-
     pcl::PointCloud < pcl::PointXYZ >::iterator myIterator;
     for(myIterator = pcl_cloud.begin();  
         myIterator != pcl_cloud.end();
@@ -43,7 +42,8 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "listener");
   ros::NodeHandle n;
-  ros::Subscriber sub = n.subscribe("/camera/depth/points", 1000, chatterCallback);
+  //ros::Subscriber sub = n.subscribe("/camera/depth/points", 1000, chatterCallback);
+  ros::Subscriber sub = n.subscribe("/nav_kinect/depth/points", 1000, chatterCallback);
   ros::spin();
   return 0;
 }
