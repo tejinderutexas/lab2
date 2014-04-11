@@ -20,7 +20,9 @@ void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
      //Actually convert the PointCloud2 message into a type we can reason about
     pcl::PointCloud < pcl::PointXYZ > pcl_cloud;
     pcl::fromPCLPointCloud2(pcl_pc2, pcl_cloud);
-    int x = 1000; 
+    double x = 1000; 
+    double y;
+    double z;
     pcl::PointXYZ point;
     pcl::PointCloud < pcl::PointXYZ >::iterator myIterator;
     for(myIterator = pcl_cloud.begin();  
@@ -28,9 +30,11 @@ void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
         myIterator++)
     {
         //std::cout<<*myIterator<<" ";
-        if(myIterator->x < x)
+        if(myIterator->x < x && myIterator->x>0)
         {
             x = myIterator->x;
+            y = myIterator->y;
+            z = myIterator->z;
         }
     }
     std::cout<<"The lowest x is " << x << std::endl;
