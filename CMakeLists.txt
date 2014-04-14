@@ -133,6 +133,10 @@ add_executable(kinect_print_to_screen src/kinect_print_to_screen.cpp)
 target_link_libraries(kinect_print_to_screen ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 add_dependencies(kinect_print_to_screen lab2_generate_messages_cpp)
 
+add_executable(robot_tf_listener src/robot_tf_listener.cpp)
+target_link_libraries(robot_tf_listener ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+
 #############
 ## Install ##
 #############

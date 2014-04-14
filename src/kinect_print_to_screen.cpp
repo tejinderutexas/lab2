@@ -6,7 +6,7 @@
 #include <pcl/conversions.h>
 #include <pcl/PCLPointCloud2.h>
 #include <cstdio>
-
+#include <tf/transform_broadcaster.h>
 #include <pcl_conversions/pcl_conversions.h>
 
 void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
@@ -37,7 +37,13 @@ void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
             z = myIterator->z;
         }
     }
-    std::cout<<"The lowest x is " << x << std::endl;
+//    std::cout<<"The lowest x is " << x << std::endl;
+    static tf::TransformBroadcaster br;
+    tf::Transform transform;
+    transform.setOrigin(tf::Vector3(x,y,z));
+    transform.setRotation(tf::Quaternion(0,0,1));
+    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), 
+                "/nav_kinect_depth_optical_frame", "/point"));
   }
   catch (pcl::PCLException& ex)
   {
