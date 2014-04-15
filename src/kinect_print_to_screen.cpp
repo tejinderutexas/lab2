@@ -8,7 +8,7 @@
 #include <cstdio>
 #include <tf/transform_broadcaster.h>
 #include <pcl_conversions/pcl_conversions.h>
-
+#include <cmath>
 void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
 {
   try
@@ -40,11 +40,17 @@ void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
             z = myIterator->z;
         }
     }
+    if ( z!=z)
+    {
+      z=0;
+      x=0;
+      y=0;
+    }
     std::cout<<"The lowest z is " << z << std::endl;
     static tf::TransformBroadcaster br;
     tf::Transform transform;
     transform.setOrigin(tf::Vector3(x,y,z));
-    transform.setRotation(tf::Quaternion(0,0,1));
+    transform.setRotation(tf::Quaternion(0,0,0));
     br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), 
                 "/nav_kinect_depth_optical_frame", "/point"));
   }
