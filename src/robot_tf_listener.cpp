@@ -25,7 +25,7 @@ int main(int argc, char** argv){
       ROS_ERROR("%s",ex.what());
     }
     geometry_msgs::Twist vel_msg;
-    vel_msg.angular.z = .1 * atan2(transform.getOrigin().y(),
+    vel_msg.angular.z = 1 * atan2(transform.getOrigin().y(),
                                  transform.getOrigin().x());
     vel_msg.linear.x = 0.1 * sqrt(pow(transform.getOrigin().x(), 2) +
                                   pow(transform.getOrigin().y(), 2));

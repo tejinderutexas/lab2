@@ -100,7 +100,7 @@ catkin_package(
 #       std_msgs
 #       tf
 #   DEPENDS
-#       PCL
+#       PC
 )
 
 ###########
