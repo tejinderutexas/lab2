@@ -31,15 +31,16 @@ void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
         myIterator++)
     {
         //std::cout<<*myIterator<<" ";
-        if(myIterator->x>0 && (pow(myIterator->x,2)+pow(myIterator->y, 2)+pow(myIterator->z, 2)<dist))
+     //   if(myIterator->x>0 && (pow(myIterator->x,2)+pow(myIterator->y, 2)+pow(myIterator->z, 2)<dist))
+        if(myIterator->z <z)
         {
-            dist = pow(myIterator->x, 2) + pow(myIterator->y, 2) + pow(myIterator->z, 2);
+//            dist = pow(myIterator->x, 2) + pow(myIterator->y, 2) + pow(myIterator->z, 2);
             x = myIterator->x;
             y = myIterator->y;
             z = myIterator->z;
         }
     }
-    std::cout<<"The lowest dist is " << dist << std::endl;
+    std::cout<<"The lowest z is " << z << std::endl;
     static tf::TransformBroadcaster br;
     tf::Transform transform;
     transform.setOrigin(tf::Vector3(x,y,z));
