@@ -93,14 +93,14 @@ catkin_package(
     #INCLUDE_DIRS
     #    include
     #    ${PCL_INCLUDE_DIRS}
-    CATKIN_DEPENDS
-        pcl_ros
-        roscpp
-        sensor_msgs
-        std_msgs
-        tf
-    DEPENDS
-        PCL
+#    CATKIN_DEPENDS
+#        pcl_ros
+#       roscpp
+#       sensor_msgs
+#       std_msgs
+#       tf
+#   DEPENDS
+#       PCL
 )
 
 ###########

@@ -10,7 +10,7 @@ int main(int argc, char** argv){
 
 
   ros::Publisher point_vel =
-       node.advertise<geometry_msgs::Twist>("cmd_vel", 10);
+       node.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
 
   tf::TransformListener listener;
 
@@ -18,12 +18,8 @@ int main(int argc, char** argv){
   while (node.ok()){
     tf::StampedTransform transform;
     try{
-      listener.lookupTransform("/base_link", "/point",
+      listener.lookupTransform("base_link", "/point",
                                ros::Time(0), transform);
-    }
-    catch (tf::TransformException ex){
-      ROS_ERROR("%s",ex.what());
-    }
     geometry_msgs::Twist vel_msg;
     vel_msg.angular.z = .1 * atan2(transform.getOrigin().y(),
                                  transform.getOrigin().x());
@@ -31,6 +27,11 @@ int main(int argc, char** argv){
                                   pow(transform.getOrigin().y(), 2));
 
     point_vel.publish(vel_msg);
+
+    }
+    catch (tf::TransformException ex){
+      ROS_ERROR("%s",ex.what());
+    }
 
     rate.sleep();
   }
