@@ -40,7 +40,7 @@ void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
             z = myIterator->z;
         }
     }
-    if ( z!=z)
+    if ( z!=z || z==1000)
     {
       z=0;
       x=0;

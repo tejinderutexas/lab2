@@ -29,7 +29,7 @@ int main(int argc, char** argv){
                                  transform.getOrigin().x());
     vel_msg.linear.x = 0.3 * sqrt(pow(transform.getOrigin().x(), 2) +
                                   pow(transform.getOrigin().y(), 2));
-    if(transform.getOrigin().x()<1)
+    if(transform.getOrigin().x()<0.75)
     {
       vel_msg.linear.x=0;
     }
