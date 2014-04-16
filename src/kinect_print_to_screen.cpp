@@ -45,7 +45,7 @@ void chatterCallback(const sensor_msgs::PointCloud2::ConstPtr msg)
       z=0;
       x=0;
       y=0;
-    }
+    } 
     std::cout<<"The lowest z is " << z << std::endl;
     static tf::TransformBroadcaster br;
     tf::Transform transform;

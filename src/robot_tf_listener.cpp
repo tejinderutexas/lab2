@@ -25,14 +25,20 @@ int main(int argc, char** argv){
       ROS_ERROR("%s",ex.what());
     }
     geometry_msgs::Twist vel_msg;
-    vel_msg.angular.z = .3 * atan2(transform.getOrigin().y(),
+    vel_msg.angular.z = .5 * atan2(transform.getOrigin().y(),
                                  transform.getOrigin().x());
     vel_msg.linear.x = 0.3 * sqrt(pow(transform.getOrigin().x(), 2) +
                                   pow(transform.getOrigin().y(), 2));
     if(transform.getOrigin().x()<0.75)
     {
       vel_msg.linear.x=0;
+    //  vel_msg.angular.z=0;
     }
+    if (transform.getOrigin().x()<0.5)
+    {
+      vel_msg.linear.x = -0.3;
+    }
+
     point_vel.publish(vel_msg);
 
     rate.sleep();
